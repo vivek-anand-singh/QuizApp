@@ -5,7 +5,7 @@
       "use": "@vercel/go"
     },
     {
-      "src": "quiz_app_frontend/build.sh",
+      "src": "vercel-build.sh",
       "use": "@vercel/static-build",
       "config": {
         "distDir": "quiz_app_frontend/build/web"
