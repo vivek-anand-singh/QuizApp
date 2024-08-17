@@ -1,0 +1,33 @@
+{
+    "projects": [
+      {
+        "name": "quiz-app-frontend",
+        "directory": "quiz_app_frontend"
+      },
+      {
+        "name": "quiz-app-backend",
+        "directory": "quiz-app-backend"
+      }
+    ],
+    "builds": [
+      {
+        "src": "quiz_app_frontend/**",
+        "use": "@vercel/static-build"
+      },
+      {
+        "src": "quiz-app-backend/**",
+        "use": "@vercel/go"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/api/(.*)",
+        "dest": "quiz-app-backend/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "quiz_app_frontend/$1"
+      }
+    ]
+  }
+  
