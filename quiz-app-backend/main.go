@@ -1,14 +1,13 @@
 package main
 
 import (
-    "log"
     "net/http"
     "quiz-app-backend/routes"
     "github.com/gorilla/mux"
     "github.com/rs/cors"
 )
 
-func main() {
+func CreateHandler() http.Handler {
     r := mux.NewRouter()
 
     r.HandleFunc("/questions", routes.GetQuestions).Methods("GET")
@@ -21,10 +20,9 @@ func main() {
         AllowCredentials: true,
     })
 
-    handler := c.Handler(r)
+    return c.Handler(r)
+}
 
-    log.Println("Server started at :8080")
-    if err := http.ListenAndServe(":8080", handler); err != nil {
-        log.Fatalf("Server failed to start: %v", err)
-    }
+func main() {
+    http.ListenAndServe(":8080", CreateHandler())
 }
