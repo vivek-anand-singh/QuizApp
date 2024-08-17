@@ -1,33 +1,28 @@
 {
-    "projects": [
-      {
-        "name": "quiz-app-frontend",
-        "directory": "quiz_app_frontend"
-      },
-      {
-        "name": "quiz-app-backend",
-        "directory": "quiz-app-backend"
+  "builds": [
+    {
+      "src": "api/*.go",
+      "use": "@vercel/go"
+    },
+    {
+      "src": "quiz_app_frontend/build.sh",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "quiz_app_frontend/build/web"
       }
-    ],
-    "builds": [
-      {
-        "src": "quiz_app_frontend/**",
-        "use": "@vercel/static-build"
-      },
-      {
-        "src": "quiz-app-backend/**",
-        "use": "@vercel/go"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/api/(.*)",
-        "dest": "quiz-app-backend/$1"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "quiz_app_frontend/$1"
-      }
-    ]
-  }
-  
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "api/$1"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "quiz_app_frontend/build/web/index.html"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 package database
 
-import "quiz-app-backend/models"
+import "api/models"
 
 var questions = []models.Question{
     {

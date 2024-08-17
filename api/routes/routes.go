@@ -3,8 +3,8 @@ package routes
 import (
     "encoding/json"
     "net/http"
-    "quiz-app-backend/models"
-    "quiz-app-backend/database"
+    "api/models"
+    "api/database"
 )
 
 func GetQuestions(w http.ResponseWriter, r *http.Request) {
